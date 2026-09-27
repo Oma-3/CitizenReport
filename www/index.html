@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' data: blob: https: 'unsafe-inline' 'unsafe-eval';
+             img-src 'self' data: content: blob: https:;
+             connect-src 'self' https:;"
+    />
+
+    <title>Citizen Report</title>
+
+    <!-- CitizenReport favicon -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23135f53'/%3E%3Cpath d='M32 13C23.7 13 17 19.7 17 28c0 11 15 24 15 24s15-13 15-24c0-8.3-6.7-15-15-15zm0 21a6 6 0 110-12 6 6 0 010 12z' fill='white'/%3E%3C/svg%3E"
+    />
+
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>CitizenReport</h1>
+        <p>Report. Inform. Stay Safe.</p>
+      </div>
+    </header>
+
+    <main>
+      <!-- HOME -->
+      <section id="homePage" class="page active">
+        <div class="welcome-card">
+          <p class="eyebrow">COMMUNITY SAFETY</p>
+
+          <h2>What's happening around you?</h2>
+
+          <p>
+            Report incidents in your community and help others stay informed.
+          </p>
+
+          <button class="primary-btn" onclick="openReportPage()">
+            + Report an Incident
+          </button>
+        </div>
+
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">LATEST</p>
+            <h2>Recent Incidents</h2>
+          </div>
+
+          <button class="text-btn" onclick="showPage('incidentsPage')">
+            View All
+          </button>
+        </div>
+
+        <div id="recentIncidents" class="incident-list"></div>
+      </section>
+
+      <!-- REPORT INCIDENT -->
+      <section id="reportPage" class="page">
+        <div class="page-title">
+          <p class="eyebrow">NEW REPORT</p>
+          <h2>Report an Incident</h2>
+          <p>Provide accurate information about what happened.</p>
+        </div>
+
+        <form id="incidentForm">
+          <label for="title">Incident Title</label>
+
+          <input
+            type="text"
+            id="title"
+            placeholder="e.g. Road accident on Airport Road"
+            required
+          />
+
+          <label for="category">Category</label>
+
+          <select id="category" required>
+            <option value="">Select category</option>
+            <option value="Accident">Accident</option>
+            <option value="Fighting">Fighting</option>
+            <option value="Rioting">Rioting</option>
+            <option value="Fire">Fire</option>
+            <option value="Crime">Crime</option>
+            <option value="Other">Other</option>
+          </select>
+
+          <label for="description">Description</label>
+
+          <textarea
+            id="description"
+            rows="5"
+            placeholder="Describe the incident..."
+            required
+          ></textarea>
+
+          <label>Incident Location</label>
+
+          <button type="button" class="secondary-btn" onclick="getLocation()">
+            📍 Use My Current Location
+          </button>
+
+          <div id="locationResult" class="location-box">
+            Location not added yet.
+          </div>
+
+          <label for="incidentImage">Picture of Incident</label>
+
+          <input type="file" id="incidentImage" accept="image/*" />
+
+          <img id="imagePreview" class="image-preview" alt="Incident preview" />
+
+          <button type="submit" class="primary-btn">Submit Incident</button>
+        </form>
+      </section>
+
+      <!-- ALL INCIDENTS -->
+      <section id="incidentsPage" class="page">
+        <div class="page-title">
+          <p class="eyebrow">COMMUNITY REPORTS</p>
+          <h2>Browse Incidents</h2>
+          <p>View incident reports submitted by the community.</p>
+        </div>
+
+        <div class="filter-row">
+          <button
+            class="filter active-filter"
+            onclick="filterIncidents('All', this)"
+          >
+            All
+          </button>
+
+          <button class="filter" onclick="filterIncidents('Accident', this)">
+            Accident
+          </button>
+
+          <button class="filter" onclick="filterIncidents('Fighting', this)">
+            Fighting
+          </button>
+
+          <button class="filter" onclick="filterIncidents('Rioting', this)">
+            Rioting
+          </button>
+
+          <button class="filter" onclick="filterIncidents('Fire', this)">
+            Fire
+          </button>
+
+          <button class="filter" onclick="filterIncidents('Crime', this)">
+            Crime
+          </button>
+        </div>
+
+        <div id="allIncidents" class="incident-list"></div>
+      </section>
+
+      <!-- ACCOUNT -->
+      <section id="loginPage" class="page">
+        <!-- LOGGED OUT -->
+        <div id="loggedOutAccount" class="login-card">
+          <p class="eyebrow">YOUR ACCOUNT</p>
+
+          <h2 id="accountHeading">Welcome Back</h2>
+
+          <p id="accountDescription">
+            Sign in to submit incidents and view your reports.
+          </p>
+
+          <!-- LOGIN FORM -->
+          <form id="loginForm">
+            <label for="loginEmail">Email Address</label>
+
+            <input
+              type="email"
+              id="loginEmail"
+              placeholder="you@example.com"
+              required
+            />
+
+            <label for="loginPassword">Password</label>
+
+            <input
+              type="password"
+              id="loginPassword"
+              placeholder="Enter password"
+              required
+            />
+
+            <button type="submit" class="primary-btn">Login</button>
+          </form>
+
+          <!-- SIGN UP FORM -->
+          <form id="signupForm" class="hidden">
+            <label for="signupName">Full Name</label>
+
+            <input
+              type="text"
+              id="signupName"
+              placeholder="Enter your full name"
+              required
+            />
+
+            <label for="signupEmail">Email Address</label>
+
+            <input
+              type="email"
+              id="signupEmail"
+              placeholder="you@example.com"
+              required
+            />
+
+            <label for="signupPassword">Password</label>
+
+            <input
+              type="password"
+              id="signupPassword"
+              placeholder="Minimum 6 characters"
+              minlength="6"
+              required
+            />
+
+            <label for="confirmPassword">Confirm Password</label>
+
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Enter password again"
+              minlength="6"
+              required
+            />
+
+            <button type="submit" class="primary-btn">Create Account</button>
+          </form>
+
+          <div id="authMessage"></div>
+
+          <div class="auth-switch">
+            <span id="switchText">Don't have an account?</span>
+
+            <button
+              id="switchAuthButton"
+              type="button"
+              onclick="toggleAuthMode()"
+            >
+              Sign Up
+            </button>
+          </div>
+        </div>
+
+        <!-- LOGGED IN -->
+        <div id="loggedInAccount" class="login-card hidden">
+          <p class="eyebrow">YOUR ACCOUNT</p>
+
+          <h2>My Account</h2>
+
+          <div class="user-profile">
+            <div class="avatar" id="userAvatar">U</div>
+
+            <div>
+              <h3 id="accountUserName">User</h3>
+              <p id="accountUserEmail"></p>
+            </div>
+          </div>
+
+          <button class="primary-btn" onclick="openReportPage()">
+            + Report New Incident
+          </button>
+
+          <div id="myReportsSection">
+            <div class="section-heading account-heading">
+              <div>
+                <p class="eyebrow">MY ACTIVITY</p>
+                <h2>My Submitted Incidents</h2>
+              </div>
+            </div>
+
+            <div id="myReports" class="incident-list"></div>
+          </div>
+
+          <button type="button" class="logout-btn" onclick="logout()">
+            Log Out
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- BOTTOM NAVIGATION -->
+    <nav class="bottom-nav">
+      <button onclick="showPage('homePage')" class="nav-item active-nav">
+        <span>⌂</span>
+        Home
+      </button>
+
+      <button onclick="showPage('incidentsPage')" class="nav-item">
+        <span>☷</span>
+        Incidents
+      </button>
+
+      <button onclick="openReportPage()" class="report-nav">
+        <span>+</span>
+        Report
+      </button>
+
+      <button onclick="showPage('loginPage')" class="nav-item">
+        <span>♙</span>
+        Account
+      </button>
+    </nav>
+
+    <div id="toast" class="toast"></div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyDSWmY2a-kLBUYGkWZEGtgM47n2L4HtcvY",
+        authDomain: "citizenreport-fb31c.firebaseapp.com",
+        projectId: "citizenreport-fb31c",
+        storageBucket: "citizenreport-fb31c.firebasestorage.app",
+        messagingSenderId: "866852328505",
+        appId: "1:866852328505:web:12aa653cca2233220ae9e8",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+
+      const auth = firebase.auth();
+      const db = firebase.firestore();
+    </script>
+
+    <script src="js/index.js"></script>
+  </body>
+</html>

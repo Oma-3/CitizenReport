@@ -1,0 +1,626 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f7f4;
+  color: #1d2523;
+  padding-bottom: 105px;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* ----------------------------------------------------
+   TOP BAR
+---------------------------------------------------- */
+
+.topbar {
+  width: 100%;
+  background: #135f53;
+  color: #ffffff;
+  padding: 18px 24px;
+}
+
+.topbar > div {
+  width: min(100%, 720px);
+  margin: 0 auto;
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.topbar p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+/* ----------------------------------------------------
+   MAIN LAYOUT
+---------------------------------------------------- */
+
+main {
+  width: min(100% - 32px, 720px);
+  margin: 0 auto;
+}
+
+.page {
+  display: none;
+  padding: 28px 0;
+}
+
+.page.active {
+  display: block;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ----------------------------------------------------
+   HEADINGS
+---------------------------------------------------- */
+
+.eyebrow {
+  margin: 0 0 7px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.7px;
+  color: #66736f;
+}
+
+.page-title {
+  margin-bottom: 26px;
+}
+
+.page-title h2,
+.section-heading h2,
+.welcome-card h2,
+.login-card h2 {
+  margin: 0;
+  color: #1b2422;
+}
+
+.page-title h2 {
+  font-size: 29px;
+}
+
+.page-title > p:last-child {
+  margin: 9px 0 0;
+  color: #6b7471;
+  font-size: 16px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 15px;
+  margin: 30px 2px 14px;
+}
+
+.section-heading h2 {
+  font-size: 23px;
+}
+
+.account-heading {
+  margin-top: 30px;
+}
+
+/* ----------------------------------------------------
+   HOME WELCOME CARD
+---------------------------------------------------- */
+
+.welcome-card {
+  background: #ffffff;
+  border: 1px solid #e3e8e5;
+  border-radius: 17px;
+  padding: 24px;
+  box-shadow: 0 7px 24px rgba(25, 55, 48, 0.06);
+}
+
+.welcome-card h2 {
+  font-size: 27px;
+  margin-bottom: 10px;
+}
+
+.welcome-card > p:not(.eyebrow) {
+  color: #66716e;
+  line-height: 1.6;
+  margin: 0 0 22px;
+}
+
+/* ----------------------------------------------------
+   BUTTONS
+---------------------------------------------------- */
+
+.primary-btn,
+.secondary-btn,
+.logout-btn,
+.delete-report-btn {
+  width: 100%;
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-weight: 700;
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.primary-btn {
+  background: #135f53;
+  border: 1px solid #135f53;
+  color: #ffffff;
+}
+
+.primary-btn:hover {
+  opacity: 0.94;
+}
+
+.primary-btn:active,
+.secondary-btn:active,
+.logout-btn:active,
+.delete-report-btn:active {
+  transform: scale(0.99);
+}
+
+.secondary-btn {
+  background: #e8f0ec;
+  border: 1px solid #dce8e3;
+  color: #243c36;
+}
+
+.text-btn {
+  background: transparent;
+  border: 0;
+  color: #244e45;
+  font-weight: 700;
+  padding: 8px;
+}
+
+.logout-btn {
+  margin-top: 24px;
+  background: #ffffff;
+  border: 1px solid #d3d9d6;
+  color: #37433f;
+}
+.logout-btn:hover {
+  background: #f1f5f3;
+  border-color: #135f53;
+  color: #135f53;
+}
+/* New: only appears in My Submitted Incidents */
+
+.delete-report-btn {
+  margin-top: 15px;
+  background: #ffffff;
+  color: #b42318;
+  border: 1px solid #e4aaa5;
+}
+
+.delete-report-btn:hover {
+  background: #fff5f4;
+}
+
+/* ----------------------------------------------------
+   FORMS
+---------------------------------------------------- */
+
+form {
+  width: 100%;
+}
+
+#incidentForm,
+.login-card {
+  background: #ffffff;
+  border: 1px solid #e2e7e4;
+  border-radius: 15px;
+  padding: 22px;
+}
+
+label {
+  display: block;
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #293330;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  border: 1px solid #d6ddda;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #222b29;
+  padding: 13px 14px;
+  margin-bottom: 19px;
+  outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #32786a;
+  box-shadow: 0 0 0 3px rgba(19, 95, 83, 0.08);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+#incidentForm .secondary-btn {
+  margin-bottom: 10px;
+}
+
+#incidentForm .primary-btn {
+  margin-top: 18px;
+}
+
+/* ----------------------------------------------------
+   LOCATION
+---------------------------------------------------- */
+
+.location-box {
+  background: #f0f3f1;
+  border-radius: 8px;
+  padding: 13px 14px;
+  margin: 0 0 20px;
+  color: #5e6966;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.location-box strong {
+  color: #263d37;
+}
+
+.coordinate-text {
+  display: inline-block;
+  margin-top: 4px;
+  color: #7b8582;
+  font-size: 12px;
+}
+
+/* ----------------------------------------------------
+   IMAGE
+---------------------------------------------------- */
+
+.image-preview {
+  display: none;
+  width: 100%;
+  max-height: 380px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: -5px 0 5px;
+}
+
+/* ----------------------------------------------------
+   INCIDENT LIST
+---------------------------------------------------- */
+
+.incident-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.incident-card {
+  background: #ffffff;
+  border: 1px solid #e0e6e3;
+  border-radius: 14px;
+  padding: 18px;
+  overflow: hidden;
+}
+
+.incident-card h3 {
+  margin: 9px 0 7px;
+  font-size: 18px;
+  color: #202927;
+}
+
+.incident-card > p:not(.incident-meta) {
+  margin: 0 0 13px;
+  color: #5e6865;
+  line-height: 1.5;
+}
+
+.incident-card img {
+  display: block;
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 9px;
+  margin: 12px 0;
+}
+
+.category-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #e7eee9;
+  color: #486159;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.incident-meta {
+  margin: 11px 0 0;
+  color: #707a77;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.empty-state {
+  padding: 28px 18px;
+  background: #ffffff;
+  border: 1px solid #e1e6e3;
+  border-radius: 12px;
+  text-align: center;
+  color: #707a77;
+}
+
+/* ----------------------------------------------------
+   FILTERS
+---------------------------------------------------- */
+
+.filter-row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 2px 0 15px;
+  scrollbar-width: thin;
+}
+
+.filter {
+  flex: 0 0 auto;
+  border: 1px solid #d7dedb;
+  background: #ffffff;
+  color: #4e5b57;
+  border-radius: 20px;
+  padding: 8px 14px;
+  font-size: 13px;
+}
+
+.filter.active-filter {
+  background: #135f53;
+  border-color: #135f53;
+  color: #ffffff;
+}
+
+/* ----------------------------------------------------
+   ACCOUNT
+---------------------------------------------------- */
+
+.login-card {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.login-card > p:not(.eyebrow) {
+  color: #69736f;
+  line-height: 1.5;
+}
+
+.login-card form {
+  margin-top: 20px;
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: 22px;
+  color: #66716d;
+  font-size: 13px;
+}
+
+.auth-switch button {
+  border: 0;
+  background: transparent;
+  color: #135f53;
+  font-weight: 700;
+}
+
+.auth-error {
+  margin-top: 15px;
+  padding: 11px 13px;
+  border-radius: 7px;
+  background: #fff1f0;
+  color: #a8271c;
+  font-size: 13px;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  margin: 18px 0;
+  background: #f0f3f1;
+  border-radius: 10px;
+}
+
+.avatar {
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #135f53;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.user-profile h3 {
+  margin: 0 0 3px;
+  text-transform: lowercase;
+}
+
+.user-profile p {
+  margin: 0;
+  color: #68736f;
+  font-size: 13px;
+  word-break: break-word;
+}
+
+/* ----------------------------------------------------
+   BOTTOM NAVIGATION
+---------------------------------------------------- */
+
+.bottom-nav {
+  position: fixed;
+  z-index: 100;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: min(100%, 720px);
+  height: 78px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid #e0e5e2;
+  box-shadow: 0 -5px 18px rgba(25, 50, 45, 0.06);
+}
+
+.nav-item,
+.report-nav {
+  height: 100%;
+  border: 0;
+  background: transparent;
+  color: #66716e;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 12px;
+}
+
+.nav-item span {
+  font-size: 21px;
+}
+
+.nav-item.active-nav {
+  color: #135f53;
+  font-weight: 700;
+}
+
+.report-nav {
+  color: #263f39;
+  font-weight: 700;
+}
+
+.report-nav span {
+  display: flex;
+  width: 44px;
+  height: 44px;
+  margin-top: -20px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #135f53;
+  color: #ffffff;
+  font-size: 28px;
+  line-height: 1;
+  box-shadow: 0 4px 10px rgba(19, 95, 83, 0.22);
+}
+
+/* ----------------------------------------------------
+   TOAST
+---------------------------------------------------- */
+
+.toast {
+  position: fixed;
+  z-index: 500;
+  left: 50%;
+  bottom: 100px;
+  transform: translate(-50%, 25px);
+  width: max-content;
+  max-width: calc(100% - 40px);
+  padding: 12px 18px;
+  background: #202825;
+  color: #ffffff;
+  border-radius: 8px;
+  font-size: 13px;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+/* ----------------------------------------------------
+   RESPONSIVE
+---------------------------------------------------- */
+
+@media (max-width: 600px) {
+  main {
+    width: min(100% - 22px, 720px);
+  }
+
+  .topbar {
+    padding: 15px 16px;
+  }
+
+  .topbar h1 {
+    font-size: 21px;
+  }
+
+  .page {
+    padding-top: 20px;
+  }
+
+  .welcome-card,
+  #incidentForm,
+  .login-card {
+    padding: 18px;
+  }
+
+  .welcome-card h2 {
+    font-size: 23px;
+  }
+
+  .page-title h2 {
+    font-size: 25px;
+  }
+
+  .section-heading h2 {
+    font-size: 21px;
+  }
+
+  .bottom-nav {
+    width: 100%;
+  }
+}
