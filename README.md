@@ -22,9 +22,8 @@ The goal was to create something practical while also improving my skills in bui
 
 ## Built With
 
-- Next.js
-- React
-- TypeScript
+- HTML
+- JavaScript 
 - CSS
 - Git & GitHub
 
